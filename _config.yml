@@ -18,34 +18,19 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: DevMode - Marcelo Ohashi
+title: DevMode
 email: mohashi@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  A developer focused overview of trends and technologies. Technical information of 
-  Openshift, Kubernetes, Container, Java, Quarkus, Microprofile, Vert.X, Camel, Artemis, 
-  Strimzi, Knative, and many other technologies
+  Exchange of developer insights - by Marcelo Ohashi
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: mgohashi
 github_username:  mgohashi
 
 # Build settings
-theme: texture
+theme: jekyll-theme-midnight
 plugins:
   - jekyll-feed
-
-texture:
-  title: DevMode
-  tagline: Exchange of developer insights - by Marcelo Ohashi
-  date_format: "%b %-d, %Y"
-  style: black
-  showPicker: false
-  showNav: false
-
-  social_links:
-    twitter: mgohashi
-    github:  mgohashi
-    linkedIn: in/mohashi
 
 # Exclude from processing.
 # The following items will not be processed, by default.
