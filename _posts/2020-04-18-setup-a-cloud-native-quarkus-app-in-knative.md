@@ -2,6 +2,7 @@
 title:  "Quick Start Knative"
 excerpt: "This post will show you details on how to porvision, deploy and use some knative features and give you an overview of what is serverless"
 header:
+  image: /assets/images/me.png
   overlay_image: /assets/images/unsplash-image-1.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
