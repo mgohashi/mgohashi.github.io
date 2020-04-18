@@ -21,7 +21,6 @@ twitter_username: mgohashi
 github_username: mgohashi
 minimal_mistakes_skin: dark
 search: true
-
 # Build settings
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
@@ -31,6 +30,11 @@ paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: BR # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 breadcrumbs: true
+twitter:
+  username: mgohashi
+facebook:
+  username: mgohashi
+og_image: /assets/images/me.png
 
 include:
   - _pages
