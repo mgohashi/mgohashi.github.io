@@ -2,8 +2,8 @@
 title:  "Quick Start Knative"
 excerpt: "This post will show you details on how to provision, deploy and use some Knative features and give you an overview of what is serverless"
 header:
-  image: /assets/images/knative.jpg
-  og_image: /assets/images/knative.jpg
+  image: /assets/images/knative.png
+  og_image: /assets/images/knative.png
   overlay_image: /assets/images/unsplash-image-1.jpg
   overlay_filter: 0.5
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
