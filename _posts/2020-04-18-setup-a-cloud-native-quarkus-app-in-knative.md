@@ -35,7 +35,7 @@ In order to deploy and test our serverless setup in a Kubernetes environment we 
 
 ## Installing and configuring Knative
 
-After having the CRC up and running, let's install the serverless Operator witch has the version `0.13.1` of Knative. The process that we will go here is using the `oc` command-line interface (CLI).
+After having the CRC up and running, let's install the Openshift serverless operator witch is based on the version `0.13.1` of Knative. The process that we will go here is using the `oc` command-line interface (CLI).
 
 ```shell
 $ kubectl get packagemanifests/serverless-operator \
