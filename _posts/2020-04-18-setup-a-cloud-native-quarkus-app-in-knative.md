@@ -482,6 +482,7 @@ With this introductory article we have created a cloud native application and de
 
 Stay tuned for more articles related to developing cloud native apps.
 
+You can see this sample code in the following repository: [https://github.com/mgohashi/quickstart-knative](https://github.com/mgohashi/quickstart-knative){:target="_blank"}.
 
 [^1]: [knative.dev](https://knative.dev/){:target="_blank"}
 [^2]: [Developing Cloud Native Applications](https://www.cncf.io/blog/2017/05/15/developing-cloud-native-applications/){:target="_blank"}
