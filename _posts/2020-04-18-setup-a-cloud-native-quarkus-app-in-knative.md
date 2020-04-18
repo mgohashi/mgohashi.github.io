@@ -1,6 +1,6 @@
 ---
 title:  "Quick Start Knative"
-excerpt: "This post will show you details on how to provision, deploy and use some knative features and give you an overview of what is serverless"
+excerpt: "This post will show you details on how to provision, deploy and use some Knative features and give you an overview of what is serverless"
 header:
   overlay_image: /assets/images/unsplash-image-1.jpg
   overlay_filter: 0.5
@@ -25,17 +25,17 @@ tags:
 ---
 
 
-In this article, I am going to show you how to deploy a Cloud Native Application in Knative. There are several advantages that we could use to make better usage of resources of your Kubernetes cluster.
+In this article, I am going to show you how to deploy a Cloud-Native Application in Knative. There are several advantages that we could use to make better usage of resources of your Kubernetes cluster.
 
-Knative[^1] is a Kubernetes native platform built to deploy and manage server less workloads. Knative was created by Google with the contribution of several companies, such as: IBM, SAP, Red Hat, Pivotal, and others. It has some capabilities, such as: scale to zero, stand up, a pluggable architecture, and it can be used with almost every kind of applications. For more information access the reference here.
+Knative[^1] is a Kubernetes native platform built to deploy and manage serverless workloads. Knative was created by Google with the contribution of several companies, such as IBM, SAP, Red Hat, Pivotal, and others. It has some capabilities, such as scale to zero, stand up, a pluggable architecture, and it can be used with almost every kind of application.
 
-A Cloud Native Application[^2] is a sort of application that uses technologies that run smoothly in a cloud environment and have implemented some requirements that would not only make it more reliable in dynamic environments, but also in platforms, such as, Kubernetes, which I would include: health checks, circuit breakers, bulkhead patterns, and so on.
+A Cloud-Native application[^2] is a sort of application that uses technologies that run smoothly in a cloud environment and have implemented some requirements that would not only make it more reliable in dynamic environments, but also in platforms, such as Kubernetes, which I would include: health checks, circuit breakers, bulkhead patterns, and so on.
 
-In order to deploy and test our serverless setup in a Kubernetes envorironment we will use the Code Ready Containers (CRC) environment. Code Ready Containers will spin up a cluster, which is a all-in-one cluster or both master and worker node, in your local machine. So, if you don't have it already there you can follow the installation process of this reference [here](https://code-ready.github.io/crc/#installation_gsg){:target="_blank"}.
+In order to deploy and test our serverless setup in a Kubernetes environment we will use the Code Ready Containers (CRC) environment. Code Ready Containers will spin up a cluster, which is an all-in-one cluster or both master and worker node, in your local machine. So, if you don't have it already there you can follow the installation process of this reference [here](https://code-ready.github.io/crc/#installation_gsg){:target="_blank"}.
 
 ## Installing and configuring Knative
 
-After having the CRC up and running, let's install the Serverless Operator witch has the version `0.13.1` of knative. The process that we will go here is using the `oc` command line interface (CLI).
+After having the CRC up and running, let's install the serverless Operator witch has the version `0.13.1` of Knative. The process that we will go here is using the `oc` command-line interface (CLI).
 
 ```shell
 $ kubectl get packagemanifests/serverless-operator \
@@ -45,7 +45,7 @@ preview-4.3
 techpreview
 ```
 
-The command above returned all the supported channels that we are going to use. For the purpose of this test we will pick the channel `preview-4.3` which will result in the following command to add the subscription in our kubernetes.
+The command above returned all the supported channels that we are going to use. For the purpose of this test, we will pick the channel `preview-4.3` which will result in the following command to add the subscription in our Kubernetes.
 
 ```shell
 $ cat << EOF | kubectl apply -f - 
@@ -79,7 +79,7 @@ metadata:
 EOF
 ```
 
-You can validation the installation by running the following command and see all the operator's pods running.
+You can validate the installation by running the following command and see all the operator's pods running.
 
 ```shell
 $ kubectl get pods -n knative-serving
@@ -100,9 +100,9 @@ webhook-76bb99f856-wlclf         1/1     Running   0          5m10s
 
 The controllers will be scanning all CR's that we will be creating throughout the article.
 
-## Creating the cloud native application
+## Creating the Cloud-native application
 
-To create the cloud native application we will use the current GA version of [quarkus framework](https://quarkus.io){:target="_blank"}.
+To create the Cloud-native application we will use the current GA version of [Quarkus framework](https://quarkus.io){:target="_blank"}.
 
 To create this application you need to have the following versions:
  - [GraalVM](https://www.graalvm.org/){:target="_blank"} 19.3.1 or 20.0.0 for native compilation
@@ -145,24 +145,24 @@ quickstart-knative
     └── test
 ```
  - `mvnw and mvnw.cmd`: Maven command
- - `Dockerfile.jvm`: Dockerfile used to build the quarkus app in jvm mode
- - `Dockerfile.native`: Dockerfile used to build the quarkus app in native mode
+ - `Dockerfile.jvm`: Dockerfile used to build the Quarkus app in JVM mode
+ - `Dockerfile.native`: Dockerfile used to build the Quarkus app in native mode
  - `ProductResource.java`: Class that implements a JAX-RS resource
- - `application.properties`: A configuration file for the quarkus app
+ - `application.properties`: A configuration file for the Quarkus app
 
 
 Now that we've created the app you can run it using the following command:
 
-**NOTE:** This command also keeps watching your source code for any changes and when detected these changes are automaticaly compiled and your application reloaded. So, after you run it, you can leave it there runing to take all the changes we will make here.
+**NOTE:** This command also keeps watching your source code for any changes and when detected these changes are automatically compiled and your application reloaded. So, after you run it, you can leave it there running to take all the changes we will make here.
 {: .notice--info}
 
 ```shell
 $ ./mvn clean quarkus:dev
 ```
 
-That will to open the port `8080` on your local machine to access your new cloud native application. Try to open the application in your preferred browser by accessing [http://localhost:8080](http://localhost:8080){:target="_blank"}.
+That will open the port `8080` on your local machine to access your new Cloud-native application. Try to open the application in your preferred browser by accessing [http://localhost:8080](http://localhost:8080){:target="_blank"}.
 
-![cloud-native-app](/assets/images/quakus-app-web-browser.png)
+![Cloud-native-app](/assets/images/quakus-app-web-browser.png)
 
 You can also use the [`httpie`](http://httpie.org){:target="_blank"} command to test the default service created at `localhost:8080/v1/api/product`.
 
@@ -175,7 +175,7 @@ Content-Type: text/plain;charset=UTF-8
 hello
 ```
 
-After creating the application, we can start improving our resource. For the sake of simplicity, I will create a POJO like model of a `Product` inside a package `io.mohashi.sample.model`.
+After creating the application, we can start improving its endpoints. For the sake of simplicity, I will create a POJO `Product` as our model inside a package `io.mohashi.sample.model`.
 
 ```java
 package io.mohashi.sample.model;
@@ -202,7 +202,7 @@ public class Product {
     }
 }
 ```
- - `@RegisterForReflection`: This annotation makes this class eligible for reflectio event after we generate the native binary for this class.
+ - `@RegisterForReflection`: This annotation makes this class eligible for reflection event after we generate the native binary for this class.
 
 **Note** 
 At the moment, when JSON-B or Jackson tries to get the list of fields of a class, if the class is not registered for reflection, no exception will be thrown. GraalVM will simply return an empty list of fields.<br/>
@@ -210,7 +210,7 @@ Hopefully, this will change in the future and make the error more obvious.
 {: .notice}
 
 
-Let's change a little bit the resouce to return a list of objects of `Product`.
+Let's change a little bit the JAX-RS endpoint to return a list of objects of `Product`.
 
 ```java
 package io.mohashi.sample.resource;
@@ -250,12 +250,12 @@ public class ProductResource {
 **Note**: Don't forget to fix the unit tests after changing the resource.
 {: .notice--info}
 
-In order to add features to a quarkus application we use *extensions*. Extensions are a just pluggable components that can be added to a quarkus app. A quarkus application comes out-of-the-box with a minimal set of extensions `quarkus-resteasy` and `quarkus-junit5`. So, we will to add some new extensions that will provide the functionalities that we will need in this example. And here follows:
- - `resteasy-jsonb`: To provide automatic json object mapping conversion;
- - `openshift`: To provide knative support for our application;
+In order to add features to a Quarkus application we use *extensions*. Extensions are just pluggable components that can be added to a Quarkus app. A Quarkus application comes out-of-the-box with a minimal set of extensions `quarkus-resteasy` and `quarkus-junit5`. So, we will add some new extensions that will provide the functionalities that we will need in this example. And here follows:
+ - `resteasy-jsonb`: To provide automatic JSON object mapping conversion;
+ - `openshift`: To provide Knative support for our application;
  - `smallrye-health`: To enable health checks in the cluster;
 
-To add an extension to our quarkus application we will use the plugin `quarkus-maven-plugin`.
+To add an extension to our Quarkus application we will use the plugin `quarkus-maven-plugin`.
 
 ```shell
 $ ./mvnw quarkus:add-extension \
@@ -307,18 +307,18 @@ Content-Type: application/json
 ]
 ```
 
-## Deploying in knative
+## Deploying in Knative
 
-So, now that we have our bare minimal application built let's move on to deploy it into our kubernetes instance. But, we need to prepare the configuration files with additional properties:
+So, now that we have our bare minimal application built let's move on to deploy it into our Kubernete instance. But, we need to prepare the configuration files with additional properties:
 
 ```properties
 quarkus.container-image.registry=image-registry.openshift-image-registry.svc:5000
 quarkus.container-image.group=knative-app
 quarkus.kubernetes.deployment-target=knative
 ```
- - `quarkus.container-image.registry`: This property is to inform from where the knative is going to retrieve the container image
+ - `quarkus.container-image.registry`: This property is to inform from where the Knative is going to retrieve the container image
  - `quarkus.container-image.group`: This property informs the namespace that the deployment is going to be created
- - `quarkus.kubernetes.deployment-target`: This property informs to the `quarkus-maven-plugin` what is going to be our deployment target platform
+ - `quarkus.kubernetes.deployment-target`: This property informs the `quarkus-maven-plugin` what is going to be our deployment target platform
 
 And then, let's create a new namespace `knative-app` for our deployment.
 
@@ -358,17 +358,17 @@ The result is long and you should see the image being pushed to the repository:
 [INFO] ------------------------------------------------------------------------
 ```
 
-Now that we have there the image there we will be able to create the deployment of the knative service.
+Now that we have there the image there we will be able to create the deployment of the Knative service.
 
 **Small fix for `quarkus.maven.plugin` version `1.3.2.Final`**<br/>
-This fix is necessary due to a newer mandatory [knative's protocol requirement](https://github.com/knative/serving/blob/master/docs/runtime-contract.md#protocols-and-ports){:target="_blank"}. And the latest quarkus-maven-plugin is not fully compliant. So, to fix that we will need to manually rename a container port from `http` to `http1` and remove the liveness and readiness ports from probes in the generated file `target/kubernetes/knative.yml`, before deploying it.
+This fix is necessary due to a newer mandatory [Knative's protocol requirement](https://github.com/knative/serving/blob/master/docs/runtime-contract.md#protocols-and-ports){:target="_blank"}. And the latest quarkus-maven-plugin is not fully compliant. So, to fix that we will need to manually rename a container port from `http` to `http1` and remove the liveness and readiness ports from probes in the generated file `target/kubernetes/knative.yml`, before deploying it.
 {: .notice--warning}
 
 ```shell
 $ kubectl apply -f ./target/kubernetes/knative.yml
 ```
 
-In the result you are going to see the resources being created and the pods starting up.
+As a result you are going to see the resources being created and the pods starting up.
 
 ```console
 serviceaccount/quickstart-knative created
@@ -383,7 +383,7 @@ quickstart-knative-1-build                             0/1     Completed   0    
 quickstart-knative-t5xgf-deployment-76f5d67bfd-jr5gt   2/2     Running     0          51s
 ```
 
-**Note** If wait for 90 seconds you will see that the pod is going to terminate due to the scale to zero feature of knative.
+**Note** If we wait for 90 seconds you will see that the pod is going to terminate due to the scale to zero feature of knative.
 {: .notice--info}
 
 ```console
@@ -396,7 +396,7 @@ quickstart-knative-...-jr5gt   0/2     Terminating   0          2m2s
 quickstart-knative-...-jr5gt   0/2     Terminating   0          2m2s
 ```
 
-Once we deploy our app and the app runs smoothly knative creates a ingress to our application and a deployment. You can check using the following command:
+Once we deploy our app and the app runs smoothly knative creates an ingress to our application and a deployment. You can check using the following command:
 
 ```shell
 $ kubectl get route.serving/quickstart-knative
@@ -409,13 +409,13 @@ NAME                 URL                                                      RE
 quickstart-knative   http://quickstart-knative.knative-app.apps-crc.testing   True    
 ```
 
-So, this is our ingress route to the knative app. Let's test it.
+So, this is our ingress route to the Knative app. Let's test it.
 
 ```shell
 $ http $(kc get route.serving/quickstart-knative -o yaml | yq r - 'status.url')/v1/api/product
 ```
 
-After making this call you should see the application starting up in the kubernetes cluster:
+After making this call you should see the application starting up in the Kubernete cluster:
 
 ```console
 NAME                           READY   STATUS              RESTARTS   AGE
@@ -478,9 +478,9 @@ In the web console you can see the update happening as well.
 
 ## Conclusion
 
-With this introductory article we have created a cloud native application and deployed in a Knative Ready Kubernetes Cluster. Knative applications are good to optimize the hardware utilization and save money and resources just when it is really necessary. Regardless, we need to understand that this comes with the price that this kinds of applications need to be very lightweight and a fast startup time.
+With this introductory article, we have created a Cloud-native application and deployed in a Knative Ready Kubernetes Cluster. Knative applications are good to optimize hardware utilization and save money and resources just when it is really necessary. Regardless, we need to understand that this comes with the price that these kinds of applications need to be very lightweight and fast startup time.
 
-Stay tuned for more articles related to developing cloud native apps.
+Stay tuned for more articles related to developing Cloud-native apps.
 
 You can see this sample code in the following repository: [https://github.com/mgohashi/quickstart-knative](https://github.com/mgohashi/quickstart-knative){:target="_blank"}.
 

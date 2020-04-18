@@ -1,0 +1,17 @@
+{
+    "grammarly.overrides": [
+        {
+            "files": [
+                "**/_posts/2020-04-18-setup-a-cloud-native-quarkus-app-in-knative.md"
+            ],
+            "config": {
+                "audience": "knowledgeable",
+                "dialect": "american",
+                "domain": "technical",
+                "emotions": "joyful",
+                "goals": "inform",
+                "emotion": "mild"
+            }
+        }
+    ]
+}
