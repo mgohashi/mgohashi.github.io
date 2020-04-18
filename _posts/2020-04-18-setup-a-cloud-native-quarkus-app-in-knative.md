@@ -25,17 +25,17 @@ tags:
 ---
 
 
-In this article, I am going to show you how to deploy a Cloud-Native Application in Knative. There are several advantages that we could use to make better usage of resources of your Kubernetes cluster.
+In this article, I am going to show you how to deploy a *Cloud-Native Application* in *Knative.* There are several advantages that we could use to make better usage of resources of your Kubernetes cluster.
 
-Knative[^1] is a Kubernetes native platform built to deploy and manage serverless workloads. Knative was created by Google with the contribution of several companies, such as IBM, SAP, Red Hat, Pivotal, and others. It has some capabilities, such as scale to zero, stand up, a pluggable architecture, and it can be used with almost every kind of application.
+*Knative[^1]* is a Kubernetes native platform built to deploy and manage serverless workloads. Knative was created by Google with the contribution of several companies, such as IBM, SAP, Red Hat, Pivotal, and others. It has some capabilities, such as scale to zero, stand up, a pluggable architecture, and it can be used with almost every kind of application.
 
-A Cloud-Native application[^2] is a sort of application that uses technologies that run smoothly in a cloud environment and have implemented some requirements that would not only make it more reliable in dynamic environments, but also in platforms, such as Kubernetes, which I would include: health checks, circuit breakers, bulkhead patterns, and so on.
+A *Cloud-Native Application[^2]* is a sort of application that uses technologies that run smoothly in a cloud environment and have implemented some requirements that would not only make it more reliable in dynamic environments, but also in platforms, such as Kubernetes, which I would include: health checks, circuit breakers, bulkhead patterns, and so on.
 
-In order to deploy and test our serverless setup in a Kubernetes environment we will use the Code Ready Containers (CRC) environment. Code Ready Containers will spin up a cluster, which is an all-in-one cluster or both master and worker node, in your local machine. So, if you don't have it already there you can follow the installation process in this link [here](https://code-ready.github.io/crc/#installation_gsg){:target="_blank"}.
+In order to deploy and test our serverless setup in a Kubernetes environment we will use the *Code Ready Containers* (CRC) environment. Code Ready Containers will spin up a cluster, which is an all-in-one cluster or both master and worker node, in your local machine. So, if you don't have it already there you can follow the installation process in this link [here](https://code-ready.github.io/crc/#installation_gsg){:target="_blank"}.
 
 ## Installing and configuring Knative
 
-After having the CRC up and running, let's install the Openshift serverless operator witch is based on the version `0.13.1` of Knative. The process that we will go here is using the `oc` command-line interface (CLI).
+After having the CRC up and running, let's install the *Openshift Serverless Operator* witch is based on the version `0.13.1` of Knative. The process that we will go here is using the `oc` command-line interface (CLI).
 
 ```shell
 $ kubectl get packagemanifests/serverless-operator \
