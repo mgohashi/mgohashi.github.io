@@ -31,7 +31,7 @@ Knative[^1] is a Kubernetes native platform built to deploy and manage serverles
 
 A Cloud-Native application[^2] is a sort of application that uses technologies that run smoothly in a cloud environment and have implemented some requirements that would not only make it more reliable in dynamic environments, but also in platforms, such as Kubernetes, which I would include: health checks, circuit breakers, bulkhead patterns, and so on.
 
-In order to deploy and test our serverless setup in a Kubernetes environment we will use the Code Ready Containers (CRC) environment. Code Ready Containers will spin up a cluster, which is an all-in-one cluster or both master and worker node, in your local machine. So, if you don't have it already there you can follow the installation process of this reference [here](https://code-ready.github.io/crc/#installation_gsg){:target="_blank"}.
+In order to deploy and test our serverless setup in a Kubernetes environment we will use the Code Ready Containers (CRC) environment. Code Ready Containers will spin up a cluster, which is an all-in-one cluster or both master and worker node, in your local machine. So, if you don't have it already there you can follow the installation process in this link [here](https://code-ready.github.io/crc/#installation_gsg){:target="_blank"}.
 
 ## Installing and configuring Knative
 
