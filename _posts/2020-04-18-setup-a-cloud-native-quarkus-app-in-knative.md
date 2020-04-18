@@ -1,6 +1,6 @@
 ---
 title:  "Quick Start Knative"
-excerpt: "This post will show you details on how to porvision, deploy and use some knative features and give you an overview of what is serverless"
+excerpt: "This post will show you details on how to provision, deploy and use some knative features and give you an overview of what is serverless"
 header:
   overlay_image: /assets/images/unsplash-image-1.jpg
   overlay_filter: 0.5
