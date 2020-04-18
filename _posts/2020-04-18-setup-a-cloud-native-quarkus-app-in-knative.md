@@ -21,7 +21,8 @@ tags:
  - Code Ready Containers
  - kubectl
  - Maven
- - Java11
+ - Java8
+ - GraalVM
 ---
 
 
