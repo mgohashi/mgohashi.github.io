@@ -35,6 +35,11 @@ twitter:
 facebook:
   username: mgohashi
 og_image: /assets/images/me.png
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "UA-163964078-1"
+    anonymize_ip: false # default
 
 include:
   - _pages
@@ -65,7 +70,7 @@ plugins:
 author:
   name   : "Marcelo Ohashi"
   avatar : "/assets/images/me.png"
-  bio    : "A technology enthusiast with more than 17 years working as a middleware architect and Java, Shell, Groovy, Python and Go developer."
+  bio    : "A technology enthusiast that enjoys to discuss and work with technology."
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
