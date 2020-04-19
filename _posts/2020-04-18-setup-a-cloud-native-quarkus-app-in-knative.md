@@ -481,7 +481,7 @@ In the web console you can see the update happening as well.
 
 ## Conclusion
 
-With this introductory article, we have created a Cloud-native application and deployed in a Knative Ready Kubernetes Cluster. Knative applications are good to optimize hardware utilization and save money and resources just when it is really necessary. Regardless, we need to understand that this comes with the price that these kinds of applications need to be very lightweight and fast startup time.
+With this introductory article, we have created a Cloud-native application and deployed in a Knative Ready Kubernetes Cluster. Knative applications are good to optimize hardware utilization and save money and resources just when it is really necessary. Regardless, we need to understand that this comes with the price that these kinds of applications need to be not only very lightweight but also a fast startup time otherwise the API consumer is gonna have a long wait time to get their responses back.
 
 Stay tuned for more articles related to developing Cloud-native apps.
 
