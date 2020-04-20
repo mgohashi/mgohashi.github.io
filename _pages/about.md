@@ -3,5 +3,5 @@ permalink: /about/
 title: "About"
 ---
 
-I am a technology enthusiast. I love to develop in almost any language , but I focus more on Java today. I am also a speaker and a software architect at Red Hat. A have a long history of experience in design, optimization, and implementation of service-oriented, microservices, and application architectures. I have contributed with best practices, technical solutions, and documentation in the following topics: Quarkus, Wildfly, 3scale, Apache Camel, Messaging with Strimzi, Kafka, OKD, Kubernetes, and many others.
+Marcelo Ohashi is a software architect with a long history of successful experiences in design, implement, and lead a team to deliver microservice, application, and integration solutions. Marcelo specialized in many development languages, tools, techniques, and methodologies. A strong believer that everyone can contribute to the success of a project of product, he regularly writes articles, speaks in conferences and workshops, and works in his personal hobbies working with home automation.
 {: .text-justify}

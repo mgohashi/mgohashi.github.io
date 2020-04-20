@@ -70,7 +70,7 @@ plugins:
 author:
   name   : "Marcelo Ohashi"
   avatar : "/assets/images/me.png"
-  bio    : "A technology enthusiast that enjoys to discuss and work with technology."
+  bio    : "An enthusiast that enjoys discussing and work with technology."
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
