@@ -13,5 +13,8 @@
                 "emotion": "mild"
             }
         }
+    ],
+    "cSpell.enableFiletypes": [
+        "!markdown"
     ]
 }

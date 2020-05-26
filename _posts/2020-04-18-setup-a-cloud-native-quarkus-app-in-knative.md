@@ -2,12 +2,14 @@
 title:  "Quick Start Knative"
 excerpt: "This post will show you details on how to provision, deploy and use some Knative features and give you an overview of what is serverless"
 header:
-  image: /assets/images/knative.png
-  og_image: /assets/images/knative.png
-  overlay_image: /assets/images/unsplash-image-1.jpg
+  image: /assets/images/setup-a-cloud-native-quarkus-app-in-knative/knative.png
+  og_image: /assets/images/setup-a-cloud-native-quarkus-app-in-knative/knative.png
+  overlay_image: /assets/images/setup-a-cloud-native-quarkus-app-in-knative/unsplash-image-1.jpg
   overlay_filter: 0.5
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 toc: true
+classes: wide
+comments: true
 categories: 
  - Blog
  - Kubernetes
@@ -51,17 +53,17 @@ techpreview
 The command above returned all the supported channels that we are going to use. For the purpose of this test, we will pick the channel `preview-4.3` which will result in the following command to add the subscription in our Kubernetes.
 
 ```shell
-$ cat << EOF | kubectl apply -f - 
+$ cat << EOF | kubectl apply -f -
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: serverless-operator
-  namespace: openshift-operators 
+  namespace: openshift-operators
 spec:
   channel: preview-4.3
   name: serverless-operator
-  source: redhat-operators 
-  sourceNamespace: openshift-marketplace 
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
 EOF
 ```
 
@@ -85,7 +87,7 @@ EOF
 You can validate the installation by running the following command and see all the operator's pods running.
 
 ```shell
-$ kubectl get pods -n knative-serving
+kubectl get pods -n knative-serving
 ```
 
 You can see in the output that there are two `controllers` for this basic installation.
@@ -108,8 +110,9 @@ The controllers will be scanning all CR's that we will be creating throughout th
 To create the Cloud-native application we will use the current GA version of [Quarkus framework](https://quarkus.io){:target="_blank"}.
 
 To create this application you need to have the following versions:
- - [GraalVM](https://www.graalvm.org/){:target="_blank"} 19.3.1 or 20.0.0 for native compilation
- - [Apache Maven](https://maven.apache.org/){:target="_blank"} 3.6.2+
+
+- [GraalVM](https://www.graalvm.org/){:target="_blank"} 19.3.1 or 20.0.0 for native compilation
+- [Apache Maven](https://maven.apache.org/){:target="_blank"} 3.6.2+
 
 So, let's create our application by using `io.quarkus:quarkus-maven-plugin:1.3.2.Final` plugin.
 
@@ -147,12 +150,12 @@ quickstart-knative
     │               └── index.html
     └── test
 ```
- - `mvnw and mvnw.cmd`: Maven command
- - `Dockerfile.jvm`: Dockerfile used to build the Quarkus app in JVM mode
- - `Dockerfile.native`: Dockerfile used to build the Quarkus app in native mode
- - `ProductResource.java`: Class that implements a JAX-RS resource
- - `application.properties`: A configuration file for the Quarkus app
 
+- `mvnw and mvnw.cmd`: Maven command
+- `Dockerfile.jvm`: Dockerfile used to build the Quarkus app in JVM mode
+- `Dockerfile.native`: Dockerfile used to build the Quarkus app in native mode
+- `ProductResource.java`: Class that implements a JAX-RS resource
+- `application.properties`: A configuration file for the Quarkus app
 
 Now that we've created the app you can run it using the following command:
 
@@ -160,12 +163,12 @@ Now that we've created the app you can run it using the following command:
 {: .notice--info}
 
 ```shell
-$ ./mvn clean quarkus:dev
+./mvn clean quarkus:dev
 ```
 
 That will open the port `8080` on your local machine to access your new Cloud-native application. Try to open the application in your preferred browser by accessing [http://localhost:8080](http://localhost:8080){:target="_blank"}.
 
-![Cloud-native-app](/assets/images/quakus-app-web-browser.png)
+![Cloud-native-app](/assets/images/setup-a-cloud-native-quarkus-app-in-knative/quakus-app-web-browser.png)
 
 You can also use the [`httpie`](http://httpie.org){:target="_blank"} command to test the default service created at `localhost:8080/v1/api/product`.
 
@@ -196,7 +199,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer id, String name, 
+    public Product(Integer id, String name,
         String sku, BigDecimal value) {
         this.id = id;
         this.name = name;
@@ -205,13 +208,13 @@ public class Product {
     }
 }
 ```
- - `@RegisterForReflection`: This annotation makes this class eligible for reflection event after we generate the native binary for this class.
 
-**Note** 
+- `@RegisterForReflection`: This annotation makes this class eligible for reflection event after we generate the native binary for this class.
+
+**Note**
 At the moment, when JSON-B or Jackson tries to get the list of fields of a class, if the class is not registered for reflection, no exception will be thrown. GraalVM will simply return an empty list of fields.<br/>
 Hopefully, this will change in the future and make the error more obvious.
 {: .notice}
-
 
 Let's change a little bit the JAX-RS endpoint to return a list of objects of `Product`.
 
@@ -236,9 +239,9 @@ public class ProductResource {
 
     public ProductResource() {
         products = new LinkedList<>();
-        products.add(new Product(1, "Laptop", 
+        products.add(new Product(1, "Laptop",
             "P00001", new BigDecimal(10)));
-        products.add(new Product(2, "Keyboard", 
+        products.add(new Product(2, "Keyboard",
             "P00002", new BigDecimal(20)));
     }
 
@@ -254,9 +257,10 @@ public class ProductResource {
 {: .notice--info}
 
 In order to add features to a Quarkus application we use *extensions*. Extensions are just pluggable components that can be added to a Quarkus app. A Quarkus application comes out-of-the-box with a minimal set of extensions `quarkus-resteasy` and `quarkus-junit5`. So, we will add some new extensions that will provide the functionalities that we will need in this example. And here follows:
- - `resteasy-jsonb`: To provide automatic JSON object mapping conversion;
- - `openshift`: To provide Knative support for our application;
- - `smallrye-health`: To enable health checks in the cluster;
+
+- `resteasy-jsonb`: To provide automatic JSON object mapping conversion;
+- `openshift`: To provide Knative support for our application;
+- `smallrye-health`: To enable health checks in the cluster;
 
 To add an extension to our Quarkus application we will use the plugin `quarkus-maven-plugin`.
 
@@ -267,7 +271,7 @@ $ ./mvnw quarkus:add-extension \
 
 The result is:
 
-```
+```shell
 ...
 [INFO] --- quarkus-maven-plugin:1.3.2.Final:add-extension (default-cli) @ quickstart-knative ---
 ✅ Adding extension io.quarkus:quarkus-smallrye-health
@@ -284,7 +288,7 @@ The result is:
 Now that we've added the extensions let's check our endpoint again.
 
 ```shell
-$ http localhost:8080/v1/api/product
+http localhost:8080/v1/api/product
 ```
 
 The result is:
@@ -319,20 +323,21 @@ quarkus.container-image.registry=image-registry.openshift-image-registry.svc:500
 quarkus.container-image.group=knative-app
 quarkus.kubernetes.deployment-target=knative
 ```
- - `quarkus.container-image.registry`: This property is to inform from where the Knative is going to retrieve the container image
- - `quarkus.container-image.group`: This property informs the namespace that the deployment is going to be created
- - `quarkus.kubernetes.deployment-target`: This property informs the `quarkus-maven-plugin` what is going to be our deployment target platform
+
+- `quarkus.container-image.registry`: This property is to inform from where the Knative is going to retrieve the container image
+- `quarkus.container-image.group`: This property informs the namespace that the deployment is going to be created
+- `quarkus.kubernetes.deployment-target`: This property informs the `quarkus-maven-plugin` what is going to be our deployment target platform
 
 And then, let's create a new namespace `knative-app` for our deployment.
 
 ```shell
-$ kubectl create namespace knative-app
+kubectl create namespace knative-app
 ```
 
 And let's set the current namespace to `knative-app`.
 
 ```shell
-$ kubectl config set-context --current --namespace=knative-app
+kubectl config set-context --current --namespace=knative-app
 ```
 
 We are going to need a container image repository for that. For the sake of simplicity, we are going to use the CRC's internal repository.
@@ -342,7 +347,8 @@ $ ./mvnw clean package -Dquarkus.container-image.build=true \
     -Dquarkus.kubernetes-client.trust-certs=true -DskipTests \
     -Pnative
 ```
- - `native`: the native profile makes the build process to generate a native compilation using GraalVM
+
+- `native`: the native profile makes the build process to generate a native compilation using GraalVM
 
 The result is long and you should see the image being pushed to the repository:
 
@@ -368,7 +374,7 @@ This fix is necessary due to a newer mandatory [Knative's protocol requirement](
 {: .notice--warning}
 
 ```shell
-$ kubectl apply -f ./target/kubernetes/knative.yml
+kubectl apply -f ./target/kubernetes/knative.yml
 ```
 
 As a result you are going to see the resources being created and the pods starting up.
@@ -402,20 +408,20 @@ quickstart-knative-...-jr5gt   0/2     Terminating   0          2m2s
 Once we deploy our app and the app runs smoothly knative creates an ingress to our application and a deployment. You can check using the following command:
 
 ```shell
-$ kubectl get route.serving/quickstart-knative
+kubectl get route.serving/quickstart-knative
 ```
 
 The output will be:
 
 ```console
 NAME                 URL                                                      READY   REASON
-quickstart-knative   http://quickstart-knative.knative-app.apps-crc.testing   True    
+quickstart-knative   http://quickstart-knative.knative-app.apps-crc.testing   True
 ```
 
 So, this is our ingress route to the Knative app. Let's test it.
 
 ```shell
-$ http $(kc get route.serving/quickstart-knative -o yaml | yq r - 'status.url')/v1/api/product
+http $(kc get route.serving/quickstart-knative -o yaml | yq r - 'status.url')/v1/api/product
 ```
 
 After making this call you should see the application starting up in the Kubernete cluster:
@@ -429,6 +435,7 @@ quickstart-knative-...-9cx58   0/2     ContainerCreating   0          2s
 quickstart-knative-...-9cx58   1/2     Running             0          4s
 quickstart-knative-...-9cx58   2/2     Running             0          17s
 ```
+
 And you can see the deployment count incrementing by one:
 
 ```console
