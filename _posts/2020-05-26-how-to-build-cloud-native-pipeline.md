@@ -97,9 +97,11 @@ The pipeline that we are going to build has the following steps:
 - *Validate Quality Gate*{:style="text-decoration: underline"} - This task is used to validate the quality gate results by quering its API and ensure that the code has no major issues.
 - *Build-Package*{:style="text-decoration: underline"} - This task is used to create the unified package for the S2I build.
 - *Build-Image*{:style="text-decoration: underline"} - This task is used to run the S2I build using the binary approach to create a the container image and store it directly in the internal repository.
+
    **Note**
-   We could use here the current builders implementation, but that would require us to provision priviledged containers to run the image builds. Which if in your case this something unecessary you can change that and go back and use the regular builders. But, I recommend you to not choose this path if you can the alternative to run the s2i builds inside your cluster that does not require you to attenuate the security of your cluster. For more information regarding s2i builds see [this documentation](https://docs.openshift.com/container-platform/4.4/builds/build-strategies.html#build-strategy-s2i_build-strategies){:target="_blank"}.
+   We could use here the current builders implementation that are available in the Tekton's and Openshift's catalogs, but that would require us to provision priviledged containers to run the image builds. Which if in your case this something unecessary you can change that and go back and use the regular builders. But, I recommend you to not choose this path if you can the alternative to run the s2i builds inside your cluster that does not require you to attenuate the security of your cluster. For more information regarding s2i builds see [this documentation](https://docs.openshift.com/container-platform/4.4/builds/build-strategies.html#build-strategy-s2i_build-strategies){:target="_blank"}.
    {: .notice}
+
 - *Setup-App*{:style="text-decoration: underline"} - This task is used to provision the app's Kubernetes configurations in the cluster without any triggers.
 - *Deploy*{:style="text-decoration: underline"} - This task is used to execute the rollout using the latest version of the deployment.
 
