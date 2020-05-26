@@ -37,7 +37,7 @@ There is nothing really wrong with your *Jenkins* or other tools that can help y
 
 The concept of what is a pipeline can be very opinionated, so the pipeline I considered to build in this article is one that follows some best practices, but also is not too complex that would make it go into a direction that can not be reused in other scenarios. So, we are going to create a pipeline that has a good foundation and can also be extended in other much more complex scenarios.
 
-[Openshift Pipelines](https://www.openshift.com/learn/topics/pipelines){:target="_blank"} is a CI/CD solution based on Tekton and is tigthly integrated to Red Hat Openshift. The web console has some features that helps a team in many different in many different ways with a dashboards that, among other things, create an easy-to-follow way to observe what is happening in your pipelines.
+[Openshift Pipelines](https://www.openshift.com/learn/topics/pipelines){:target="_blank"} is a CI/CD solution based on Tekton and is tigthly integrated to Red Hat Openshift. The web console has some features that helps a team in many different such as dashboards that, among other things, create an easy-to-follow way to observe what is happening in your pipelines.
 
 [Tekton](https://tekton.dev/){:target="_blank"} is an opensource project which provides a Kubernetes native CI/CD (Continuous Integration and Delivery/Deployment) solution. It allows developers to build, test, and deploy their applications into any Kubernetes cluster. This project has a vibrant community that includes companies like: Google, Red Hat, and many others. The current project state is in beta with a lot of features to come.
 
