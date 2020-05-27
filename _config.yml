@@ -46,6 +46,7 @@ comments:
   utterances:
     theme: "icy-dark" # "github-dark"
     issue_term: "pathname"
+    repo: "mgohashi/blog-comments"
 
 include:
   - _pages
