@@ -44,7 +44,7 @@ analytics:
 comments:
   provider: "utterances"
   utterances:
-    theme: "preferred-color-scheme" #"github-dark"
+    theme: "dark-blue" #"github-dark"
     issue_term: "pathname"
 
 repository: "mgohashi/blog-comments"
