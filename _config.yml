@@ -42,10 +42,9 @@ analytics:
     anonymize_ip: false # default
 
 comments:
-  provider: "utterances"
-  utterances:
-    theme: "dark-blue" #"github-dark"
-    issue_term: "pathname"
+  provider: "disqus"
+  disqus:
+    shortname: "mohashi"
 
 repository: "mgohashi/blog-comments"
 
