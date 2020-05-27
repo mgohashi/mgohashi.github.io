@@ -9,7 +9,6 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 toc: true
 classes: wide
-comments: true
 categories: 
  - Blog
  - Kubernetes
