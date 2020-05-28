@@ -65,6 +65,7 @@ include:
 
 # Plugins (previously gems:)
 plugins:
+  - jekyll-github-metadata
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
