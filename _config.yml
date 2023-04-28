@@ -34,7 +34,7 @@ twitter:
   username: mgohashi
 facebook:
   username: mgohashi
-og_image: /assets/images/me.png
+og_image: /assets/images/me.jpeg
 analytics:
   provider: "google-gtag"
   google:
