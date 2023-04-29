@@ -5,7 +5,8 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - before: bundle install
-    init: bundle exec jekyll serve --incremental
+  - name: Setup Env
+    init: bundle install
+    command: bundle exec jekyll serve --incremental
 
 
