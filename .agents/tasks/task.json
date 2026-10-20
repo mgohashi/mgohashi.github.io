@@ -1,0 +1,7 @@
+{
+  "task_id": "task-jekyll-to-astro-migration",
+  "task_description": "Migrate mohashi.io from Jekyll (Minimal Mistakes) to Astro 7, per the approved design in design.md: scaffold the official Astro blog template, migrate the 2 real posts with full SEO/perf/a11y infrastructure, add a non-triggered GitHub Pages deploy workflow, and remove the Jekyll source tree only after extraction is verified complete.",
+  "status": "pending",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
