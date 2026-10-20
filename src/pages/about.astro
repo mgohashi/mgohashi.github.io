@@ -1,0 +1,32 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const title = 'About';
+const description = 'About Marcelo Ohashi, software architect and author of DevMode.';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${title} | ${SITE_TITLE}`} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main id="main-content">
+			<h1>{title}</h1>
+			<p>
+				Marcelo Ohashi is a software architect with a long history of successful experiences in
+				design, implement, and lead a team to deliver microservice, application, and integration
+				solutions. Marcelo specialized in many development languages, tools, techniques, and
+				methodologies. A strong believer that everyone can contribute to the success of a
+				product, he regularly writes articles, speaks in conferences and workshops, and works in
+				his hobbies, such as, home automation.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
+

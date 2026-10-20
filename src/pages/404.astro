@@ -1,0 +1,28 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const title = 'Page Not Found';
+const description = 'Page not found. Your pixels are in another canvas.';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${title} | ${SITE_TITLE}`} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main id="main-content">
+			<h1>{title}</h1>
+			<p>Page not found. Your pixels are in another canvas.</p>
+			<p>
+				Sorry, but the page you were trying to view does not exist. Try heading back to the
+				<a href="/">home page</a>.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
