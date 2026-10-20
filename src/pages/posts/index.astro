@@ -52,19 +52,24 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li a {
 				display: block;
+				padding: 1em;
+				border: 1px solid var(--color-border);
+				border-radius: 6px;
+				background: var(--color-card-body);
 			}
 			.title {
 				margin: 0;
-				color: rgb(var(--black));
+				color: var(--color-text-primary);
 				line-height: 1;
 			}
 			.date {
 				margin: 0;
-				color: rgb(var(--gray));
+				font-family: var(--font-mono);
+				color: var(--color-text-tertiary);
 			}
 			ul li a:hover h4,
 			ul li a:hover .date {
-				color: rgb(var(--accent));
+				color: var(--color-accent-blue);
 			}
 			ul a:hover img {
 				box-shadow: var(--box-shadow);

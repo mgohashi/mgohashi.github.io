@@ -30,11 +30,10 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageAlt } = As
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
+				max-width: 72ch;
 				margin: auto;
 				padding: 1em;
-				color: rgb(var(--gray-dark));
+				color: var(--color-text-primary);
 			}
 			.title {
 				margin-bottom: 1em;
@@ -47,10 +46,15 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageAlt } = As
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				font-family: var(--font-mono);
+				color: var(--color-text-tertiary);
 			}
 			.last-updated-on {
 				font-style: italic;
+			}
+			.prose pre {
+				border: 1px solid var(--color-border);
+				background: var(--color-card-top);
 			}
 		</style>
 	</head>

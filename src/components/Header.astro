@@ -12,6 +12,7 @@ import HeaderLink from './HeaderLink.astro';
 		<div class="internal-links">
 			<HeaderLink href="/posts">Posts</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href="/rss.xml">RSS</HeaderLink>
 		</div>
 		<div class="social-links">
 			<a href={`https://twitter.com/${SOCIAL.twitter}`}>
@@ -51,8 +52,8 @@ import HeaderLink from './HeaderLink.astro';
 		left: 0;
 		z-index: 10;
 		padding: 0.75em 1em;
-		background: var(--accent);
-		color: white;
+		background: var(--color-accent-blue);
+		color: var(--color-bg);
 		text-decoration: none;
 	}
 	.skip-link:focus-visible {
@@ -61,8 +62,9 @@ import HeaderLink from './HeaderLink.astro';
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		background: var(--color-bg);
+		border-bottom: 1px solid var(--color-border);
+		box-shadow: none;
 	}
 	h2 {
 		margin: 0;
@@ -72,6 +74,9 @@ import HeaderLink from './HeaderLink.astro';
 	h2 a,
 	h2 a.active {
 		text-decoration: none;
+		font-family: var(--font-atkinson);
+		color: var(--color-text-primary);
+		font-weight: 700;
 	}
 	nav {
 		display: flex;
@@ -80,13 +85,16 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	nav a {
 		padding: 1em 0.5em;
-		color: var(--black);
+		font-family: var(--font-mono);
+		color: var(--color-text-secondary);
+		font-size: 0.85em;
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 	}
 	nav a.active {
 		text-decoration: none;
-		border-bottom-color: var(--accent);
+		color: var(--color-accent-blue);
+		border-bottom-color: var(--color-accent-blue);
 	}
 	.social-links,
 	.social-links a {

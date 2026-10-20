@@ -5,27 +5,44 @@
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	/* Dark Mono palette */
+	--color-bg: #0a0e14;
+	--color-card-body: #0f1620;
+	--color-card-top: #111a27;
+	--color-footer-bg: #070a0f;
+	--color-border: #1e293b;
+	--color-text-primary: #e2e8f0;
+	--color-text-secondary: #94a3b8;
+	--color-text-tertiary: #64748b;
+	--color-text-dim: #475569;
+	--color-accent-blue: #38bdf8;
+	--color-accent-cyan: #22d3ee;
+	--color-tag-text: #38bdf8;
+	--color-tag-bg: #132436;
+	--accent-gradient: linear-gradient(90deg, #38bdf8 0%, #22d3ee 100%);
+	--font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+	/* Existing tokens, repointed to the Dark Mono palette */
+	--accent: var(--color-accent-blue);
+	--accent-dark: var(--color-accent-cyan);
+	--black: 226, 232, 240;
+	--gray: 148, 163, 184;
+	--gray-light: 30, 41, 59;
+	--gray-dark: 226, 232, 240;
+	--gray-gradient: rgba(var(--gray-light), 50%), #0a0e14;
 	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+		0 2px 6px rgba(0, 0, 0, 25%), 0 8px 24px rgba(0, 0, 0, 33%),
+		0 16px 32px rgba(0, 0, 0, 33%);
 }
 body {
 	font-family: var(--font-atkinson);
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
+	background: var(--color-bg);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
+	color: var(--color-text-primary);
 	font-size: 20px;
 	line-height: 1.7;
 }
@@ -93,25 +110,27 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: var(--color-card-top);
 	border-radius: 2px;
 }
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	background-color: var(--color-card-top);
+	border: 1px solid var(--color-border);
 }
 pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid var(--color-accent-blue);
 	padding: 0 0 0 20px;
 	margin: 0;
 	font-size: 1.333em;
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid var(--color-border);
 }
 @media (max-width: 720px) {
 	body {
@@ -124,6 +143,21 @@ hr {
 
 .centered-image {
 	text-align: center;
+}
+
+@keyframes blink {
+	0%,
+	50% {
+		opacity: 1;
+	}
+	51%,
+	100% {
+		opacity: 0;
+	}
+}
+.cursor::after {
+	content: '_';
+	animation: blink 1s step-end infinite;
 }
 
 .sr-only {
