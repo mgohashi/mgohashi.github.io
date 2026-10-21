@@ -5,34 +5,30 @@
  */
 
 :root {
-	/* Dark Mono palette */
-	--color-bg: #0a0e14;
-	--color-card-body: #0f1620;
-	--color-card-top: #111a27;
-	--color-footer-bg: #070a0f;
-	--color-border: #1e293b;
-	--color-text-primary: #e2e8f0;
-	--color-text-secondary: #94a3b8;
-	--color-text-tertiary: #64748b;
-	--color-text-dim: #475569;
-	--color-accent-blue: #38bdf8;
-	--color-accent-cyan: #22d3ee;
-	--color-tag-text: #38bdf8;
-	--color-tag-bg: #132436;
-	--accent-gradient: linear-gradient(90deg, #38bdf8 0%, #22d3ee 100%);
+	/* Revio light/dark-hero palette */
+	--color-bg: #ffffff;
+	--color-hero-bg: #000000;
+	--color-hero-text: #ffffff;
+	--color-hero-text-secondary: #a3a3a3;
+	--color-card-body: #f4f4f5;
+	--color-footer-bg: #000000;
+	--color-border: #e4e4e7;
+	--color-text-primary: #18181b;
+	--color-text-secondary: #52525b;
+	--color-text-tertiary: #71717a;
+	--color-accent: #6366f1;
+	--color-accent-hover: #4f46e5;
+	--color-accent-light: #e0e7ff;
+	--color-accent-light-text: #4f46e5;
+	--color-chip-dark: #2a2470;
+	--color-chip-light: #a5b4fc;
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-	/* Existing tokens, repointed to the Dark Mono palette */
-	--accent: var(--color-accent-blue);
-	--accent-dark: var(--color-accent-cyan);
-	--black: 226, 232, 240;
-	--gray: 148, 163, 184;
-	--gray-light: 30, 41, 59;
-	--gray-dark: 226, 232, 240;
-	--gray-gradient: rgba(var(--gray-light), 50%), #0a0e14;
+	/* Existing tokens, repointed to the Revio palette */
+	--accent: var(--color-accent);
+	--accent-dark: var(--color-accent-hover);
 	--box-shadow:
-		0 2px 6px rgba(0, 0, 0, 25%), 0 8px 24px rgba(0, 0, 0, 33%),
-		0 16px 32px rgba(0, 0, 0, 33%);
+		0 1px 2px rgba(0, 0, 0, 6%), 0 2px 8px rgba(0, 0, 0, 8%);
 }
 body {
 	font-family: var(--font-atkinson);
@@ -42,7 +38,7 @@ body {
 	background: var(--color-bg);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: var(--color-text-primary);
+	color: var(--color-text-secondary);
 	font-size: 20px;
 	line-height: 1.7;
 }
@@ -59,7 +55,7 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: var(--color-text-primary);
 	line-height: 1.2;
 }
 h1 {
@@ -82,10 +78,10 @@ b {
 	font-weight: 700;
 }
 a {
-	color: var(--accent);
+	color: var(--color-accent);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--color-accent-hover);
 }
 p {
 	margin-bottom: 1em;
@@ -110,20 +106,23 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: var(--color-card-top);
+	color: var(--color-text-primary);
+	background-color: var(--color-card-body);
+	border: 1px solid var(--color-border);
 	border-radius: 2px;
 }
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
-	background-color: var(--color-card-top);
+	color: var(--color-text-primary);
+	background-color: var(--color-card-body);
 	border: 1px solid var(--color-border);
 }
 pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--color-accent-blue);
+	border-left: 4px solid var(--color-accent);
 	padding: 0 0 0 20px;
 	margin: 0;
 	font-size: 1.333em;
