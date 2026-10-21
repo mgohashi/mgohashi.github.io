@@ -59,3 +59,11 @@ const ogImageURL = new URL(image?.src ?? DEFAULT_OG_IMAGE, Astro.site);
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageURL} />
+
+<!-- Synchronous so the js-enabled class lands before first paint; the
+	 CSS only hides .reveal content under this class, so a failure to
+	 run leaves everything visible. -->
+<script is:inline>document.documentElement.classList.add('js-enabled');</script>
+<script>
+	import '../scripts/reveal.js';
+</script>
