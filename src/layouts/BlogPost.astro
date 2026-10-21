@@ -69,8 +69,8 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageAlt } = As
 						<Image width={1020} height={510} src={heroImage} alt={heroImageAlt ?? title} />
 					)}
 				</div>
-				<div class="prose reveal">
-					<div class="title">
+				<div class="prose" data-reveal-root>
+					<div class="title reveal">
 						<div class="date">
 							<FormattedDate date={pubDate} />
 							{updatedDate && (
