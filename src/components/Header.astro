@@ -1,6 +1,11 @@
 ---
 import { SITE_TITLE, SOCIAL } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+
+// Absolute feed URL to put on the clipboard (what a reader app expects),
+// not the relative path. Falls back gracefully: without JS the anchor
+// still opens the feed.
+const rssUrl = new URL('rss.xml', Astro.site).href;
 ---
 
 <a href="#main-content" class="skip-link">Skip to content</a>
@@ -12,7 +17,15 @@ import HeaderLink from './HeaderLink.astro';
 		<div class="internal-links">
 			<HeaderLink href="/posts">Posts</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
-			<HeaderLink href="/rss.xml">RSS</HeaderLink>
+			<a
+				href="/rss.xml"
+				class="rss-copy"
+				data-rss-url={rssUrl}
+				aria-live="polite"
+				title="Copy the RSS feed URL to your clipboard"
+			>
+				<span class="rss-copy-label">RSS</span>
+			</a>
 		</div>
 		<div class="social-links">
 			<a href={`https://twitter.com/${SOCIAL.twitter}`}>
@@ -105,4 +118,68 @@ import HeaderLink from './HeaderLink.astro';
 			display: none;
 		}
 	}
+	.rss-copy {
+		cursor: pointer;
+	}
+	.rss-copy.copied {
+		color: var(--color-accent);
+	}
 </style>
+
+<script>
+	// Clicking RSS copies the feed URL to the clipboard instead of navigating
+	// to the raw XML. Progressive enhancement: this only runs when JS is
+	// available; otherwise the anchor's href opens the feed as before.
+	for (const link of document.querySelectorAll<HTMLAnchorElement>('.rss-copy')) {
+		const label = link.querySelector('.rss-copy-label');
+		const original = label?.textContent ?? 'RSS';
+		let resetTimer: ReturnType<typeof setTimeout> | undefined;
+
+		link.addEventListener('click', async (event) => {
+			const url = link.dataset.rssUrl;
+			if (!url) return; // No URL to copy; let the link navigate normally.
+			event.preventDefault();
+
+			let copied = false;
+			try {
+				if (navigator.clipboard?.writeText) {
+					await navigator.clipboard.writeText(url);
+					copied = true;
+				}
+			} catch {
+				copied = false;
+			}
+
+			if (!copied) {
+				// Fallback for non-secure contexts without the async Clipboard API.
+				const ta = document.createElement('textarea');
+				ta.value = url;
+				ta.setAttribute('readonly', '');
+				ta.style.position = 'absolute';
+				ta.style.left = '-9999px';
+				document.body.appendChild(ta);
+				ta.select();
+				try {
+					copied = document.execCommand('copy');
+				} catch {
+					copied = false;
+				}
+				document.body.removeChild(ta);
+			}
+
+			if (!copied) {
+				// Last resort: fall back to opening the feed so the action isn't lost.
+				window.location.href = url;
+				return;
+			}
+
+			if (label) label.textContent = 'Copied!';
+			link.classList.add('copied');
+			clearTimeout(resetTimer);
+			resetTimer = setTimeout(() => {
+				if (label) label.textContent = original;
+				link.classList.remove('copied');
+			}, 1500);
+		});
+	}
+</script>
