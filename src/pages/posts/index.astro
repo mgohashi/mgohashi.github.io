@@ -20,6 +20,19 @@ const posts = (await getCollection('blog')).sort(
 			main {
 				width: 960px;
 			}
+			.empty-state {
+				text-align: center;
+				padding: 4em 1em;
+				color: var(--color-text-secondary);
+			}
+			.empty-state h1 {
+				margin: 0 0 0.5em 0;
+				color: var(--color-text-primary);
+			}
+			.empty-state p {
+				margin: 0;
+				font-size: 1.05em;
+			}
 			ul {
 				display: flex;
 				flex-wrap: wrap;
@@ -94,21 +107,28 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<main id="main-content">
 			<section>
-				<ul>
-					{posts.map((post, index) => (
-						<li class="reveal" data-index={index % 3}>
-							<a href={`/posts/${post.id}/`}>
-								{post.data.heroImage && (
-									<Image width={720} height={360} src={post.data.heroImage} alt="" />
-								)}
-								<h4 class="title">{post.data.title}</h4>
-								<p class="date">
-									<FormattedDate date={post.data.pubDate} />
-								</p>
-							</a>
-						</li>
-					))}
-				</ul>
+				{posts.length > 0 ? (
+					<ul>
+						{posts.map((post, index) => (
+							<li class="reveal" data-index={index % 3}>
+								<a href={`/posts/${post.id}/`}>
+									{post.data.heroImage && (
+										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+									)}
+									<h4 class="title">{post.data.title}</h4>
+									<p class="date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+								</a>
+							</li>
+						))}
+					</ul>
+				) : (
+					<div class="empty-state reveal">
+						<h1>No posts yet</h1>
+						<p>New writing is on the way. Check back soon.</p>
+					</div>
+				)}
 			</section>
 		</main>
 		<Footer />
