@@ -24,7 +24,7 @@ const rssUrl = new URL('rss.xml', Astro.site).href;
 				aria-live="polite"
 				title="Copy the RSS feed URL to your clipboard"
 			>
-				<span class="rss-copy-label">RSS</span>
+				<span class="rss-copy-label">RSS</span><span class="rss-copied" aria-hidden="true">Copied!</span>
 			</a>
 		</div>
 		<div class="social-links">
@@ -121,8 +121,22 @@ const rssUrl = new URL('rss.xml', Astro.site).href;
 	.rss-copy {
 		cursor: pointer;
 	}
-	.rss-copy.copied {
+	.rss-copied {
+		margin-left: 0.5em;
 		color: var(--color-accent);
+		font-weight: 700;
+		opacity: 0;
+		transform: translateY(2px);
+		transition: opacity 200ms ease, transform 200ms ease;
+	}
+	.rss-copy.copied .rss-copied {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.rss-copied {
+			transition: none;
+		}
 	}
 </style>
 
@@ -131,8 +145,6 @@ const rssUrl = new URL('rss.xml', Astro.site).href;
 	// to the raw XML. Progressive enhancement: this only runs when JS is
 	// available; otherwise the anchor's href opens the feed as before.
 	for (const link of document.querySelectorAll<HTMLAnchorElement>('.rss-copy')) {
-		const label = link.querySelector('.rss-copy-label');
-		const original = label?.textContent ?? 'RSS';
 		let resetTimer: ReturnType<typeof setTimeout> | undefined;
 
 		link.addEventListener('click', async (event) => {
@@ -173,11 +185,9 @@ const rssUrl = new URL('rss.xml', Astro.site).href;
 				return;
 			}
 
-			if (label) label.textContent = 'Copied!';
 			link.classList.add('copied');
 			clearTimeout(resetTimer);
 			resetTimer = setTimeout(() => {
-				if (label) label.textContent = original;
 				link.classList.remove('copied');
 			}, 1500);
 		});
