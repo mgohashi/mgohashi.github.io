@@ -8,7 +8,6 @@ const today = new Date();
 	<div class="footer-row">
 		<div class="footer-text">
 			<p class="copyright">&copy; {today.getFullYear()} {SITE_AUTHOR}. All rights reserved.</p>
-			<p class="meta">minimal JS &middot; RSS feed available</p>
 			<div class="social-links">
 				<a href={`https://twitter.com/${SOCIAL.twitter}`}>
 					<span class="sr-only">Follow on Twitter</span>
@@ -58,11 +57,6 @@ const today = new Date();
 	}
 	.copyright {
 		margin: 0 0 0.5em 0;
-	}
-	.meta {
-		margin: 0;
-		font-size: 0.8em;
-		color: var(--color-hero-text-secondary);
 	}
 	.accent-bar {
 		width: 48px;
