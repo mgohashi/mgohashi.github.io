@@ -33,7 +33,7 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageAlt } = As
 				max-width: 72ch;
 				margin: auto;
 				padding: 1em;
-				color: var(--color-text-primary);
+				color: var(--color-text-secondary);
 			}
 			.title {
 				margin-bottom: 1em;
@@ -43,10 +43,10 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageAlt } = As
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
+				color: var(--color-text-primary);
 			}
 			.date {
 				margin-bottom: 0.5em;
-				font-family: var(--font-mono);
 				color: var(--color-text-tertiary);
 			}
 			.last-updated-on {
@@ -54,7 +54,8 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageAlt } = As
 			}
 			.prose pre {
 				border: 1px solid var(--color-border);
-				background: var(--color-card-top);
+				background: var(--color-card-body);
+				color: var(--color-text-primary);
 			}
 		</style>
 	</head>
@@ -63,12 +64,12 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageAlt } = As
 		<Header />
 		<main id="main-content">
 			<article>
-				<div class="hero-image">
+				<div class="hero-image reveal">
 					{heroImage && (
 						<Image width={1020} height={510} src={heroImage} alt={heroImageAlt ?? title} />
 					)}
 				</div>
-				<div class="prose">
+				<div class="prose reveal">
 					<div class="title">
 						<div class="date">
 							<FormattedDate date={pubDate} />
