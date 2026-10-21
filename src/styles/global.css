@@ -106,6 +106,7 @@ img {
 }
 code {
 	padding: 2px 5px;
+	font-family: var(--font-mono);
 	color: var(--color-text-primary);
 	background-color: var(--color-card-body);
 	border: 1px solid var(--color-border);
@@ -114,6 +115,7 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	font-family: var(--font-mono);
 	color: var(--color-text-primary);
 	background-color: var(--color-card-body);
 	border: 1px solid var(--color-border);
@@ -142,21 +144,6 @@ hr {
 
 .centered-image {
 	text-align: center;
-}
-
-@keyframes blink {
-	0%,
-	50% {
-		opacity: 1;
-	}
-	51%,
-	100% {
-		opacity: 0;
-	}
-}
-.cursor::after {
-	content: '_';
-	animation: blink 1s step-end infinite;
 }
 
 .js-enabled .reveal {
