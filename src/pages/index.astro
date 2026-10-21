@@ -24,38 +24,38 @@ const [featured, ...rest] = posts;
 			<section class="hero">
 				<p class="prompt cursor">$ cat about.txt</p>
 				<h1 class="headline">
-					<span>Código que</span>
-					<span class="gradient">conta histórias</span>
-					<span>em produção.</span>
+					<span>Code that</span>
+					<span class="gradient">tells stories</span>
+					<span>in production.</span>
 				</h1>
 				<p class="subtitle">{SITE_DESCRIPTION}</p>
 				<p class="cta">
 					<span class="bar" aria-hidden="true"></span>
-					<a href="/posts">-&gt; ver todos os posts</a>
+					<a href="/posts">-&gt; view all posts</a>
 				</p>
 			</section>
 			<hr />
 			<section class="about-teaser">
-				<p class="label">// sobre</p>
+				<p class="label">// about</p>
 				<p class="about-text">
-					{SITE_AUTHOR} é arquiteto de software e escreve aqui sobre o que
-					aprende projetando microsserviços e sistemas em produção, e, mais
-					recentemente, sobre desenvolvimento agêntico com ferramentas como
-					Kiro e Claude Code.
+					{SITE_AUTHOR} is a software architect who writes here about what he
+					learns designing microservices and production systems, and, more
+					recently, about agentic development with tools like Kiro and Claude
+					Code.
 				</p>
 				<p class="about-cta">
 					<span class="bar" aria-hidden="true"></span>
-					<a href="/about">-&gt; saiba mais</a>
+					<a href="/about">-&gt; learn more</a>
 				</p>
 			</section>
 			{featured && (
 				<section class="featured">
-					<p class="label">// último post</p>
+					<p class="label">// latest post</p>
 					<article class="card card-featured">
 						<a href={`/posts/${featured.id}/`} class="card-link">
 							<div class="card-top">
 								<span class="dot dot-blue" aria-hidden="true"></span>
-								<span class="card-tab">último post</span>
+								<span class="card-tab">latest post</span>
 								<span class="card-date">
 									<FormattedDate date={featured.data.pubDate} />
 								</span>
@@ -77,7 +77,7 @@ const [featured, ...rest] = posts;
 			)}
 			{rest.length > 0 && (
 				<>
-					<p class="label">// mais posts</p>
+					<p class="label">// more posts</p>
 					<div class="grid">
 						{rest.map((post, index) => (
 							<article class="card">
