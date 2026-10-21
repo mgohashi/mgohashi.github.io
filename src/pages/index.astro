@@ -4,11 +4,13 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const [featured, ...rest] = posts;
 ---
 
 <!doctype html>
@@ -33,33 +35,76 @@ const posts = (await getCollection('blog')).sort(
 				</p>
 			</section>
 			<hr />
-			<p class="label">// últimos posts</p>
-			<div class="grid">
-				{posts.map((post, index) => (
-					<article class="card">
-						<a href={`/posts/${post.id}/`} class="card-link">
+			<section class="about-teaser">
+				<p class="label">// sobre</p>
+				<p class="about-text">
+					{SITE_AUTHOR} é arquiteto de software e escreve aqui sobre o que
+					aprende projetando microsserviços, integrações e sistemas em
+					produção, além de palestras e experimentos com automação.
+				</p>
+				<p class="about-cta">
+					<span class="bar" aria-hidden="true"></span>
+					<a href="/about">-&gt; saiba mais</a>
+				</p>
+			</section>
+			{featured && (
+				<section class="featured">
+					<p class="label">// último post</p>
+					<article class="card card-featured">
+						<a href={`/posts/${featured.id}/`} class="card-link">
 							<div class="card-top">
-								<span
-									class={`dot ${index % 2 === 0 ? 'dot-blue' : 'dot-cyan'}`}
-									aria-hidden="true"
-								></span>
+								<span class="dot dot-blue" aria-hidden="true"></span>
+								<span class="card-tab">último post</span>
 								<span class="card-date">
-									<FormattedDate date={post.data.pubDate} />
+									<FormattedDate date={featured.data.pubDate} />
 								</span>
 							</div>
 							<div class="card-body">
-								<h3>{post.data.title}</h3>
-								<p>{post.data.description}</p>
+								<h2>{featured.data.title}</h2>
+								<p>{featured.data.description}</p>
 							</div>
-							{(post.data.categories[0] ?? post.data.tags[0]) && (
+							{(featured.data.categories[0] ?? featured.data.tags[0]) && (
 								<div class="card-footer">
-									<span class="tag">{post.data.categories[0] ?? post.data.tags[0]}</span>
+									<span class="tag">
+										{featured.data.categories[0] ?? featured.data.tags[0]}
+									</span>
 								</div>
 							)}
 						</a>
 					</article>
-				))}
-			</div>
+				</section>
+			)}
+			{rest.length > 0 && (
+				<>
+					<p class="label">// mais posts</p>
+					<div class="grid">
+						{rest.map((post, index) => (
+							<article class="card">
+								<a href={`/posts/${post.id}/`} class="card-link">
+									<div class="card-top">
+										<span
+											class={`dot ${index % 2 === 0 ? 'dot-blue' : 'dot-cyan'}`}
+											aria-hidden="true"
+										></span>
+										<span class="card-date">
+											<FormattedDate date={post.data.pubDate} />
+										</span>
+									</div>
+									<div class="card-body">
+										<h3>{post.data.title}</h3>
+										<p>{post.data.description}</p>
+									</div>
+									{(post.data.categories[0] ?? post.data.tags[0]) && (
+										<div class="card-footer">
+											<span class="tag">{post.data.categories[0] ?? post.data.tags[0]}</span>
+										</div>
+									)}
+								</a>
+							</article>
+						))}
+					</div>
+				</>
+			)}
 		</main>
 		<Footer />
 	</body>
@@ -122,6 +167,72 @@ const posts = (await getCollection('blog')).sort(
 		color: var(--color-text-tertiary);
 		font-size: 0.9em;
 		margin: 1.5em 0 1.5em 0;
+	}
+	.about-teaser {
+		margin: 1em 0 0 0;
+	}
+	.about-teaser .label {
+		margin: 1.5em 0 0.75em 0;
+	}
+	.about-text {
+		font-family: var(--font-atkinson);
+		color: var(--color-text-secondary);
+		font-size: 1em;
+		max-width: 65ch;
+		margin: 0;
+	}
+	.about-cta {
+		display: flex;
+		align-items: center;
+		gap: 0.75em;
+		margin: 1em 0 0 0;
+	}
+	.about-cta .bar {
+		display: inline-block;
+		width: 4px;
+		height: 1.4em;
+		border-radius: 2px;
+		background: var(--accent-gradient);
+	}
+	.about-cta a {
+		font-family: var(--font-mono);
+		color: var(--color-accent-blue);
+		text-decoration: none;
+		font-size: 0.95em;
+	}
+	.about-cta a:hover {
+		text-decoration: underline;
+	}
+	.featured .label {
+		margin-bottom: 1em;
+	}
+	.card-featured {
+		border-color: var(--color-accent-blue);
+	}
+	.card-featured .card-tab {
+		font-family: var(--font-mono);
+		font-size: 0.75em;
+		color: var(--color-accent-blue);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-right: auto;
+	}
+	.card-featured .card-body {
+		padding: 1.5em;
+	}
+	.card-featured .card-body h2 {
+		margin: 0 0 0.5em 0;
+		font-family: var(--font-atkinson);
+		font-weight: 700;
+		font-size: 1.75em;
+		line-height: 1.2;
+		color: var(--color-text-primary);
+	}
+	.card-featured .card-body p {
+		margin: 0;
+		font-family: var(--font-atkinson);
+		color: var(--color-text-secondary);
+		font-size: 1em;
 	}
 	.grid {
 		display: grid;
