@@ -22,89 +22,81 @@ const [featured, ...rest] = posts;
 		<Header />
 		<main id="main-content">
 			<section class="hero">
-				<p class="prompt cursor">$ cat about.txt</p>
-				<h1 class="headline">
-					<span>Code that</span>
-					<span class="gradient">tells stories</span>
-					<span>in production.</span>
-				</h1>
-				<p class="subtitle">{SITE_DESCRIPTION}</p>
-				<p class="cta">
-					<span class="bar" aria-hidden="true"></span>
-					<a href="/posts">-&gt; view all posts</a>
-				</p>
+				<div class="hero-inner">
+					<p class="badge reveal">
+						<span class="badge-dot" aria-hidden="true"></span>
+						Software architecture &amp; agentic development
+					</p>
+					<h1 class="headline reveal" data-index="1">
+						Code that tells stories<br />in production.
+					</h1>
+					<p class="subtitle reveal" data-index="2">{SITE_DESCRIPTION}</p>
+					<p class="cta reveal" data-index="3">
+						<a href="/posts" class="cta-pill">See all posts &rarr;</a>
+					</p>
+				</div>
 			</section>
-			<hr />
 			<section class="about-teaser">
-				<p class="label">// about</p>
-				<p class="about-text">
+				<p class="label reveal">About</p>
+				<p class="about-text reveal">
 					{SITE_AUTHOR} is a software architect who writes here about what he
 					learns designing microservices and production systems, and, more
 					recently, about agentic development with tools like Kiro and Claude
 					Code.
 				</p>
-				<p class="about-cta">
-					<span class="bar" aria-hidden="true"></span>
-					<a href="/about">-&gt; learn more</a>
+				<p class="about-cta reveal">
+					<a href="/about">Learn more &rarr;</a>
 				</p>
 			</section>
 			{featured && (
 				<section class="featured">
-					<p class="label">// latest post</p>
-					<article class="card card-featured">
+					<p class="label reveal">Latest post</p>
+					<article class="card card-featured reveal">
 						<a href={`/posts/${featured.id}/`} class="card-link">
-							<div class="card-top">
-								<span class="dot dot-blue" aria-hidden="true"></span>
-								<span class="card-tab">latest post</span>
+							<div class="card-body card-body-featured">
+								<span class="chip" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+										<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" />
+										<path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" stroke-width="2" />
+									</svg>
+								</span>
 								<span class="card-date">
 									<FormattedDate date={featured.data.pubDate} />
 								</span>
-							</div>
-							<div class="card-body">
 								<h2>{featured.data.title}</h2>
 								<p>{featured.data.description}</p>
-							</div>
-							{(featured.data.categories[0] ?? featured.data.tags[0]) && (
-								<div class="card-footer">
+								{(featured.data.categories[0] ?? featured.data.tags[0]) && (
 									<span class="tag">
 										{featured.data.categories[0] ?? featured.data.tags[0]}
 									</span>
-								</div>
-							)}
+								)}
+							</div>
 						</a>
 					</article>
 				</section>
 			)}
 			{rest.length > 0 && (
-				<>
-					<p class="label">// more posts</p>
+				<section class="more-posts">
+					<p class="label reveal">More posts</p>
 					<div class="grid">
 						{rest.map((post, index) => (
-							<article class="card">
+							<article class="card reveal" data-index={index % 3}>
 								<a href={`/posts/${post.id}/`} class="card-link">
-									<div class="card-top">
-										<span
-											class={`dot ${index % 2 === 0 ? 'dot-blue' : 'dot-cyan'}`}
-											aria-hidden="true"
-										></span>
+									<div class="card-body">
 										<span class="card-date">
 											<FormattedDate date={post.data.pubDate} />
 										</span>
-									</div>
-									<div class="card-body">
 										<h3>{post.data.title}</h3>
 										<p>{post.data.description}</p>
-									</div>
-									{(post.data.categories[0] ?? post.data.tags[0]) && (
-										<div class="card-footer">
+										{(post.data.categories[0] ?? post.data.tags[0]) && (
 											<span class="tag">{post.data.categories[0] ?? post.data.tags[0]}</span>
-										</div>
-									)}
+										)}
+									</div>
 								</a>
 							</article>
 						))}
 					</div>
-				</>
+				</section>
 			)}
 		</main>
 		<Footer />
@@ -112,200 +104,180 @@ const [featured, ...rest] = posts;
 </html>
 
 <style>
-	.hero {
-		padding: 2em 0 1em 0;
+	main {
+		width: 100%;
+		max-width: 100%;
+		margin: 0;
+		padding: 0;
 	}
-	.prompt {
-		margin: 0 0 0.5em 0;
-		font-family: var(--font-mono);
-		color: var(--color-text-tertiary);
-		font-size: 0.9em;
+	.hero {
+		background: var(--color-hero-bg);
+		padding: 4em 0 4.5em 0;
+	}
+	.hero-inner,
+	.about-teaser,
+	.featured,
+	.more-posts {
+		width: 720px;
+		max-width: calc(100% - 2em);
+		margin: auto;
+	}
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		margin: 0 0 1.5em 0;
+		padding: 0.4em 0.9em;
+		border-radius: 9999px;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		color: var(--color-hero-text-secondary);
+		font-size: 0.85em;
+		font-weight: 700;
+	}
+	.badge-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--color-accent);
+		flex-shrink: 0;
 	}
 	.headline {
-		display: flex;
-		flex-direction: column;
-		margin: 0 0 0.5em 0;
+		margin: 0 0 0.6em 0;
+		color: var(--color-hero-text);
 		font-family: var(--font-atkinson);
 		font-weight: 700;
+		font-size: clamp(2.25rem, 5vw, 3.5rem);
 		line-height: 1.15;
 	}
-	.headline .gradient {
-		background: var(--accent-gradient);
-		background-clip: text;
-		-webkit-background-clip: text;
-		color: transparent;
-	}
 	.subtitle {
-		font-family: var(--font-mono);
-		color: var(--color-text-secondary);
-		font-size: 0.95em;
+		margin: 0;
+		color: var(--color-hero-text-secondary);
+		font-size: 1.05em;
 		max-width: 65ch;
 	}
 	.cta {
-		display: flex;
-		align-items: center;
-		gap: 0.75em;
-		margin: 1.5em 0 0 0;
+		margin: 2em 0 0 0;
 	}
-	.cta .bar {
+	.cta-pill {
 		display: inline-block;
-		width: 4px;
-		height: 1.4em;
-		border-radius: 2px;
-		background: var(--accent-gradient);
-	}
-	.cta a {
-		font-family: var(--font-mono);
-		color: var(--color-accent-blue);
+		padding: 0.75em 1.5em;
+		border-radius: 9999px;
+		background: var(--color-accent);
+		color: #fff;
+		font-weight: 700;
 		text-decoration: none;
-		font-size: 0.95em;
 	}
-	.cta a:hover {
-		text-decoration: underline;
+	.cta-pill:hover {
+		background: var(--color-accent-hover);
 	}
 	.label {
-		font-family: var(--font-mono);
-		color: var(--color-text-tertiary);
-		font-size: 0.9em;
-		margin: 1.5em 0 1.5em 0;
+		margin: 0 0 1em 0;
+		color: var(--color-accent);
+		font-weight: 700;
+		font-size: 0.85em;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 	}
 	.about-teaser {
-		margin: 1em 0 0 0;
-	}
-	.about-teaser .label {
-		margin: 1.5em 0 0.75em 0;
+		padding: 3.5em 0;
 	}
 	.about-text {
-		font-family: var(--font-atkinson);
 		color: var(--color-text-secondary);
 		font-size: 1em;
 		max-width: 65ch;
 		margin: 0;
 	}
 	.about-cta {
-		display: flex;
-		align-items: center;
-		gap: 0.75em;
 		margin: 1em 0 0 0;
 	}
-	.about-cta .bar {
-		display: inline-block;
-		width: 4px;
-		height: 1.4em;
-		border-radius: 2px;
-		background: var(--accent-gradient);
-	}
 	.about-cta a {
-		font-family: var(--font-mono);
-		color: var(--color-accent-blue);
-		text-decoration: none;
-		font-size: 0.95em;
-	}
-	.about-cta a:hover {
+		color: var(--color-accent);
+		font-weight: 700;
 		text-decoration: underline;
 	}
-	.featured .label {
-		margin-bottom: 1em;
+	.about-cta a:hover {
+		color: var(--color-accent-hover);
 	}
-	.card-featured {
-		border-color: var(--color-accent-blue);
+	.featured {
+		padding: 0 0 3.5em 0;
 	}
-	.card-featured .card-tab {
-		font-family: var(--font-mono);
-		font-size: 0.75em;
-		color: var(--color-accent-blue);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		margin-right: auto;
-	}
-	.card-featured .card-body {
-		padding: 1.5em;
-	}
-	.card-featured .card-body h2 {
-		margin: 0 0 0.5em 0;
-		font-family: var(--font-atkinson);
-		font-weight: 700;
-		font-size: 1.75em;
-		line-height: 1.2;
-		color: var(--color-text-primary);
-	}
-	.card-featured .card-body p {
-		margin: 0;
-		font-family: var(--font-atkinson);
-		color: var(--color-text-secondary);
-		font-size: 1em;
-	}
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1.5em;
+	.more-posts {
+		padding: 0 0 4em 0;
 	}
 	.card {
 		border: 1px solid var(--color-border);
-		border-radius: 6px;
+		border-radius: 10px;
 		overflow: hidden;
 		background: var(--color-card-body);
+		box-shadow: var(--box-shadow);
 	}
 	.card-link {
 		display: block;
 		text-decoration: none;
 		color: inherit;
 	}
-	.card-top {
-		display: flex;
+	.card-body {
+		padding: 1.25em;
+	}
+	.card-body-featured {
+		padding: 2em;
+	}
+	.chip {
+		display: inline-flex;
 		align-items: center;
-		gap: 0.5em;
-		padding: 0.6em 1em;
-		background: var(--color-card-top);
-		border-bottom: 1px solid var(--color-border);
-	}
-	.dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		flex-shrink: 0;
-	}
-	.dot-blue {
-		background: var(--color-accent-blue);
-	}
-	.dot-cyan {
-		background: var(--color-accent-cyan);
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		margin-bottom: 1em;
+		border-radius: 10px;
+		background: var(--color-chip-dark);
+		color: var(--color-chip-light);
 	}
 	.card-date {
-		font-family: var(--font-mono);
-		font-size: 0.75em;
+		display: block;
+		margin-bottom: 0.5em;
 		color: var(--color-text-tertiary);
+		font-size: 0.85em;
 	}
-	.card-body {
-		padding: 1em;
-	}
-	.card-body h3 {
+	.card-featured h2 {
 		margin: 0 0 0.5em 0;
-		font-family: var(--font-atkinson);
+		font-weight: 700;
+		font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+		line-height: 1.2;
+		color: var(--color-text-primary);
+	}
+	.card h3 {
+		margin: 0 0 0.5em 0;
 		font-weight: 700;
 		font-size: 1.1em;
 		color: var(--color-text-primary);
 	}
-	.card-body p {
-		margin: 0;
-		font-family: var(--font-atkinson);
+	.card p {
+		margin: 0 0 1em 0;
 		color: var(--color-text-secondary);
-		font-size: 0.9em;
-	}
-	.card-footer {
-		padding: 0 1em 1em 1em;
+		font-size: 0.95em;
 	}
 	.tag {
 		display: inline-block;
-		padding: 0.25em 0.5em;
-		border-radius: 3px;
-		background: var(--color-tag-bg);
-		color: var(--color-tag-text);
-		font-family: var(--font-mono);
-		font-size: 10px;
+		padding: 0.25em 0.75em;
+		border-radius: 9999px;
+		background: var(--color-accent-light);
+		color: var(--color-accent-light-text);
+		font-weight: 700;
+		font-size: 0.75em;
 		text-transform: uppercase;
+		letter-spacing: 0.03em;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5em;
 	}
 	@media (max-width: 720px) {
+		.hero {
+			padding: 3em 0 3em 0;
+		}
 		.grid {
 			grid-template-columns: 1fr;
 		}
