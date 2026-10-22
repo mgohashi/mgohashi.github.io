@@ -41,12 +41,20 @@ body {
 	color: var(--color-text-secondary);
 	font-size: 20px;
 	line-height: 1.7;
+	/* Sticky footer: fill at least the viewport so a short page still
+	   pushes the footer to the bottom of the screen. */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
+	/* Grow to absorb leftover vertical space, keeping the footer at the
+	   bottom when content is short. */
+	flex: 1 0 auto;
 }
 h1,
 h2,
